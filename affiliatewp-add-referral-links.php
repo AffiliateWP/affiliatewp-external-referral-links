@@ -21,7 +21,7 @@
  * You should have received a copy of the GNU General Public License
  * along with AffiliateWP. If not, see <http://www.gnu.org/licenses/>.
  *
- * @package Share Purchase Details
+ * @package Add Referral Links
  * @category Core
  * @author Andrew Munro
  * @version 1.0
