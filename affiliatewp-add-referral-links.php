@@ -60,7 +60,7 @@ final class AffiliateWP_Add_Referral_Links {
 	 */
 	public static function instance() {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof AffiliateWP_Add_Referral_Links ) ) {
-			self::$instance = new AffiliateWP_Add_Referral_Links;
+			self::$instance   = new AffiliateWP_Add_Referral_Links;
 
 			self::$plugin_dir = plugin_dir_path( __FILE__ );
 			self::$plugin_url = plugin_dir_url( __FILE__ );
@@ -143,6 +143,7 @@ final class AffiliateWP_Add_Referral_Links {
 	 */
 	private function includes() {
 		if ( is_admin() ) {
+			// admin page
 			require_once self::$plugin_dir . 'includes/admin.php';
 		}	
 	}
