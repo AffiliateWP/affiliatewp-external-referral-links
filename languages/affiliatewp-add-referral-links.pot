@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AffiliateWP - Share Purchase Details\n"
-"POT-Creation-Date: 2014-09-15 13:44+1200\n"
-"PO-Revision-Date: 2014-09-15 13:44+1200\n"
+"POT-Creation-Date: 2014-09-15 14:19+1200\n"
+"PO-Revision-Date: 2014-09-15 14:19+1200\n"
 "Last-Translator: Andrew Munro, Sumobi <andrew@sumobi.com>\n"
 "Language-Team: AffiliateWP <support@affiliatewp.com>\n"
 "Language: en_US\n"
@@ -29,18 +29,34 @@ msgstr ""
 msgid "Get add-ons"
 msgstr ""
 
-#: ../includes/admin.php:19
+#: ../includes/admin.php:12
+msgid "Add Referral Links"
+msgstr ""
+
+#: ../includes/admin.php:18
 msgid "AffiliateWP - Add Referral Links"
 msgstr ""
 
-#: ../includes/admin.php:64
+#: ../includes/admin.php:63
 msgid "Cookie Expiration"
 msgstr ""
 
-#: ../includes/admin.php:75
+#: ../includes/admin.php:67
+msgid "How many days should the referral tracking cookie be valid for?"
+msgstr ""
+
+#: ../includes/admin.php:74
 msgid "Referral Variable"
 msgstr ""
 
-#: ../includes/admin.php:85
+#: ../includes/admin.php:78
+msgid "The referral variable you have set in AffiliateWP."
+msgstr ""
+
+#: ../includes/admin.php:84
 msgid "Store URL"
+msgstr ""
+
+#: ../includes/admin.php:88
+msgid "The URL where AffiliateWP and your ecommerce system are installed."
 msgstr ""

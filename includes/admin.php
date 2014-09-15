@@ -9,8 +9,7 @@ class AffiliateWP_Add_Referral_Links_Admin {
 	}
 
 	public function register_menu() {
-	//	add_menu_page( __( 'Affiliates', 'affiliate-wp' ), __( 'Affiliates', 'affiliate-wp' ), 'view_affiliate_reports', 'affiliate-wp', 'affwp_affiliates_dashboard' );
-		add_options_page( 'Add Referral Links', 'Add Referral Links', 'manage_options', 'add-referral-links', array( $this, 'admin_page' ) );	
+		add_options_page( __( 'Add Referral Links', 'affiliatewp-add-referral-links' ), __( 'Add Referral Links', 'affiliatewp-add-referral-links' ), 'manage_options', 'add-referral-links', array( $this, 'admin_page' ) );	
 	}
 
 	public function admin_page() { ?>
@@ -65,7 +64,7 @@ class AffiliateWP_Add_Referral_Links_Admin {
 			array( $this, 'callback_number_input' ),	
 			'affiliatewp_add_referral_links',	
 			'input_examples_section',
-			array( 'name' => 'cookie_expiration', 'id' => 'cookie-expiration', 'description' => 'How many days should the referral tracking cookie be valid for?' )			
+			array( 'name' => 'cookie_expiration', 'id' => 'cookie-expiration', 'description' => __( 'How many days should the referral tracking cookie be valid for?', 'affiliatewp-add-referral-links' ) )			
 		);
 		
 		// Referral Variable
@@ -76,7 +75,7 @@ class AffiliateWP_Add_Referral_Links_Admin {
 			array( $this, 'callback_input' ),	
 			'affiliatewp_add_referral_links',	
 			'input_examples_section',
-			array( 'name' => 'referral_variable', 'id' => 'referral-variable', 'description' => 'The referral variable you have set in AffiliateWP.' )		
+			array( 'name' => 'referral_variable', 'id' => 'referral-variable', 'description' => __( 'The referral variable you have set in AffiliateWP.', 'affiliatewp-add-referral-links' ) )		
 		);
 
 		// URL to search for
@@ -86,7 +85,7 @@ class AffiliateWP_Add_Referral_Links_Admin {
 			array( $this, 'callback_input' ),	
 			'affiliatewp_add_referral_links',	
 			'input_examples_section',
-			array( 'name' => 'url', 'id' => 'url', 'description' => 'The URL where AffiliateWP and your ecommerce system are installed.' )		
+			array( 'name' => 'url', 'id' => 'url', 'description' => __( 'The URL where AffiliateWP and your ecommerce system are installed.', 'affiliatewp-add-referral-links' ) )		
 		);
 
 		register_setting(
@@ -168,7 +167,5 @@ class AffiliateWP_Add_Referral_Links_Admin {
 
 	}
 	
-
-
 }
 $affiliatewp_menu = new AffiliateWP_Add_Referral_Links_Admin;
