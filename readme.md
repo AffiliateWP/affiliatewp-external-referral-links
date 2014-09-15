@@ -1,8 +1,8 @@
 AffiliateWP - Add Referral Links
 ========================
 
-Append an affiliate's referral ID to outbound links on external landing pages.
+*Allows affiliates to promote external landing pages by including the affiliate's ID in any outbound links to your e-commerce store.*
 
-Like other affiliate plugins, AffiliateWP must be installed on the same domain as your ecommerce system (Easy Digital Downloads, WooCommerce etc). Affiliates would then promote your URL and be awarded commission when a customer purchases. 
+Like other affiliate plugins, AffiliateWP must be installed on the same domain as your e-commerce system (Easy Digital Downloads, WooCommerce etc) to properly track visits and referrals.
 
-This plugin is intended for situations where you might have a landing page on an external domain. Affiliates will now be able to promote these landing page URLs and will still be awarded commission if the customer clicks through to your ecommerce store and purchases. It does this by storing the affiliate's ID into a cookie and passing this ID to any outbound links to your ecommerce store. Even if the affiliate moves between pages their ID will still be properly tracked.
+This plugin allows your affiliates to promote any landing page (or site) that exists on a completely separate domain. Simply install this plugin on the external WordPress site and your affiliates can now promote it using the site's URL and their affiliate ID appended (eg /?ref=123). If a customer uses the affiliate's referral URL, any outbound links to your e-commerce store will automatically include the affiliate's ID. If the customer then makes a purchase on your e-commerce store, the proper affiliate will be awarded commission. The affiliate's ID is stored in a cookie so even if the customer moves between pages on your site, the outbound links will still have the affiliate's ID appended.
