@@ -219,6 +219,21 @@ final class AffiliateWP_Add_Referral_Links {
 				affiliate_id = ref;
 			}
 
+			function updateQueryStringParameter(uri, key, value) {
+			  var re = new RegExp("([?|&])" + key + "=.*?(&|#|$)", "i");
+			  if (uri.match(re)) {
+			    return uri.replace(re, '$1' + key + "=" + value + '$2');
+			  } else {
+			    var hash =  '';
+			    var separator = uri.indexOf('?') !== -1 ? "&" : "?";    
+			    if( uri.indexOf('#') !== -1 ){
+			        hash = uri.replace(/.*#/, '#');
+			        uri = uri.replace(/#.*/, '');
+			    }
+			    return uri + separator + key + "=" + value + hash;
+			  }
+			}
+
 			if ( affiliate_id ) {
 				// get all the targeted URLs on the page that start with the specific URL
 				var target_urls = $("a[href^='<?php echo $this->get_option('url'); ?>']");
@@ -229,12 +244,13 @@ final class AffiliateWP_Add_Referral_Links {
 					// get the current href of the link
 					current_url = $(this).attr('href');
 					
+				//	console.log( updateQueryStringParameter( current_url, referral_variable, affiliate_id ) );
+
 					// append a slash to the URL if it doesn't exist
-					current_url = current_url.replace(/\/?$/, '/');
+				//	current_url = current_url.replace(/\/?$/, '/');
 
-					// modify the anchor's href to include our query string
-					$(this).attr('href', current_url + '?' + referral_variable + '=' + affiliate_id );
-
+					$(this).attr('href', updateQueryStringParameter( current_url, referral_variable, affiliate_id ) );
+					
 				});
 
 			}
