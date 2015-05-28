@@ -1,4 +1,4 @@
-AffiliateWP - Add Referral Links
+AffiliateWP - External Referral Links
 ========================
 
 *Allows affiliates to promote external landing pages by including the affiliate's ID in any outbound links to your e-commerce store.*

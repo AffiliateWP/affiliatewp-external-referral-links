@@ -1,0 +1,13 @@
+{
+  "name": "affwp-external-referral-links",
+  "version": "1.0",
+  "Dependencies": {
+     "grunt-cli": "latest"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "matchdep": "*"
+  }
+}
