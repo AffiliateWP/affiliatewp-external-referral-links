@@ -5,7 +5,7 @@
  * Description: Allows you to promote external landing pages/sites with the affiliate ID or username appended to the URLs.
  * Author: Pippin Williamson and Andrew Munro
  * Author URI: http://affiliatewp.com
- * Version: 1.0
+ * Version: 1.0.0
  * Text Domain: affiliatewp-external-referral-links
  * Domain Path: languages
  *
