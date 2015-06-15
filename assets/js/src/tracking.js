@@ -3,22 +3,24 @@ jQuery(document).ready(function($) {
 	// eg "ref"
 	var referral_variable = affwp_erl_vars.referral_variable;
 
+	// cookie expiration
+	var cookie_expiration = affwp_erl_vars.cookie_expiration;
+
 	// get the cookie value
 	var cookie = $.cookie( 'affwp_erl_id' );
 
 	// get the value of the referral variable from the query string
-	var ref = affiliatewp_arl_get_query_vars()[referral_variable];
+	var ref = affiliatewp_erl_get_query_vars()[referral_variable];
 
 	// if ref exists but cookie doesn't, set cookie with value of ref
 	if ( ref && ! cookie ) {
 		var cookie_value = ref;
 
-		// Set the cookie and expire it after 24 hours
-		$.cookie( 'affwp_erl_id', cookie_value, { expires: 2, path: '/' } );
+		$.cookie( 'affwp_erl_id', cookie_value, { expires: parseInt( cookie_expiration ), path: '/' } );
 	}
 	
 	// split up the query string and return the parts
-	function affiliatewp_arl_get_query_vars() {
+	function affiliatewp_erl_get_query_vars() {
 		var vars = [], hash;
 		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
 		for (var i = 0; i < hashes.length; i++) {
@@ -36,19 +38,29 @@ jQuery(document).ready(function($) {
 		affiliate_id = ref;
 	}
 
-	function updateQueryStringParameter(uri, key, value) {
-	  var re = new RegExp("([?|&])" + key + "=.*?(&|#|$)", "i");
-	  if (uri.match(re)) {
-	    return uri.replace(re, '$1' + key + "=" + value + '$2');
+	function updateQueryStringParameter( uri, ref_var, aff_id ) {
+
+	  var re = new RegExp("([?|&])" + ref_var + "=.*?(&|#|$)", "i");
+
+	  if ( uri.match(re) ) {
+	    return uri.replace(re, '$1' + ref_var + "=" + aff_id + '$2');
 	  } else {
+
 	    var hash =  '';
-	    var separator = uri.indexOf('?') !== -1 ? "&" : "?";    
-	    if( uri.indexOf('#') !== -1 ){
-	        hash = uri.replace(/.*#/, '#');
-	        uri = uri.replace(/#.*/, '');
+
+	    // if URL already has query string, use ampersand
+	    var separator = uri.indexOf( '?' ) !== -1 ? "&" : "?";    
+	    
+	    // if hash exists in URL, move it to the end
+	    if ( uri.indexOf( '#' ) !== -1 ) {
+	        hash = uri.replace( /.*#/, '#' );
+	        uri = uri.replace( /#.*/, '' );
 	    }
-	    return uri + separator + key + "=" + value + hash;
+
+	    return uri + separator + ref_var + "=" + aff_id + hash;
+
 	  }
+
 	}
 
 	if ( affiliate_id ) {
@@ -63,9 +75,7 @@ jQuery(document).ready(function($) {
 			// get the current href of the link
 			current_url = $(this).attr('href');
 
-			// append a slash to the URL if it doesn't exist
-			current_url = current_url.replace(/\/?$/, '/');
-
+			// build URL
 			$(this).attr('href', updateQueryStringParameter( current_url, referral_variable, affiliate_id ) );
 			
 		});
