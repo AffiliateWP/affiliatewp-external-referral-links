@@ -5,7 +5,7 @@
  * Description: Allows you to promote external landing pages/sites with the affiliate ID or username appended to the URLs.
  * Author: Pippin Williamson and Andrew Munro
  * Author URI: http://affiliatewp.com
- * Version: 1.0.0
+ * Version: 1.0.1
  * Text Domain: affiliatewp-external-referral-links
  * Domain Path: languages
  *
@@ -63,7 +63,7 @@ final class AffiliateWP_External_Referral_Links {
 
 			self::$plugin_dir = plugin_dir_path( __FILE__ );
 			self::$plugin_url = plugin_dir_url( __FILE__ );
-			self::$version    = '1.0';
+			self::$version    = '1.0.1';
 
 			self::$instance->load_textdomain();
 			self::$instance->includes();
