@@ -206,7 +206,8 @@ final class AffiliateWP_External_Referral_Links {
 		wp_localize_script( 'affwp-erl', 'affwp_erl_vars', array(
 			'cookie_expiration' => $this->get_expiration_time(),
 			'referral_variable' => $this->get_option( 'referral_variable' ),
-			'url'               => $this->get_option( 'url' )
+			'url'               => $this->get_option( 'url' ),
+			'use_last_referrer' => $this->get_option( 'use_last_referrer' )
 		));
 
 	}	
