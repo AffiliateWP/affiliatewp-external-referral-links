@@ -6,17 +6,39 @@ jQuery(document).ready(function($) {
 	// cookie expiration
 	var cookie_expiration = affwp_erl_vars.cookie_expiration;
 
+	// use last referrer
+	var use_last_referrer = affwp_erl_vars.use_last_referrer;
+
 	// get the cookie value
 	var cookie = $.cookie( 'affwp_erl_id' );
 
 	// get the value of the referral variable from the query string
 	var ref = affiliatewp_erl_get_query_vars()[referral_variable];
 
-	// if ref exists but cookie doesn't, set cookie with value of ref
-	if ( ref && ! cookie ) {
-		var cookie_value = ref;
+	// if use last referrer option is enabled, set cookie to the last referrer
+	if ( 1 == use_last_referrer ) {
+		
+		// if ref exists but cookie doesn't, set cookie with value of ref
+		if ( ref && ! cookie ) {
+			var cookie_value = ref;
 
-		$.cookie( 'affwp_erl_id', cookie_value, { expires: parseInt( cookie_expiration ), path: '/' } );
+			$.cookie( 'affwp_erl_id', cookie_value, { expires: parseInt( cookie_expiration ), path: '/' } );
+		} else if ( ref && cookie ) {
+			var cookie_value = ref;
+
+			$.removeCookie( 'affwp_erl_id' );
+			$.cookie( 'affwp_erl_id', cookie_value, { expires: parseInt( cookie_expiration ), path: '/' } );
+		}
+
+	} else {
+
+		// if ref exists but cookie doesn't, set cookie with value of ref
+		if ( ref && ! cookie ) {
+			var cookie_value = ref;
+
+			$.cookie( 'affwp_erl_id', cookie_value, { expires: parseInt( cookie_expiration ), path: '/' } );
+		}
+
 	}
 	
 	// split up the query string and return the parts
@@ -31,11 +53,20 @@ jQuery(document).ready(function($) {
 		return vars;
 	}
 
-	// the affiliate ID will usually be the value of the cookie, but on first page load we'll grab it from the query string
-	if ( cookie ) {
-		affiliate_id = cookie;
+	// if the use last referrer option is enabled, use the last referrer as affiliate id
+	if ( 1 == use_last_referrer ) {
+		if ( ref ) {
+			affiliate_id = ref;
+		} else {
+			affiliate_id = cookie;
+		}
 	} else {
-		affiliate_id = ref;
+		// the affiliate ID will usually be the value of the cookie, but on first page load we'll grab it from the query string
+		if ( cookie ) {
+			affiliate_id = cookie;
+		} else {
+			affiliate_id = ref;
+		}
 	}
 
 	function updateQueryStringParameter( uri, ref_var, aff_id ) {
