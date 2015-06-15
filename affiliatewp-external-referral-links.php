@@ -201,7 +201,7 @@ final class AffiliateWP_External_Referral_Links {
 			return;
 		}
 
-		wp_enqueue_script( 'affwp-erl', self::$plugin_url . 'assets/js/affwp-external-referral-links.min.js', array( 'jquery' ), self::$version );
+		wp_enqueue_script( 'affwp-erl', self::$plugin_url . 'assets/js/affwp-external-referral-links.js', array( 'jquery' ), self::$version );
 
 		wp_localize_script( 'affwp-erl', 'affwp_erl_vars', array(
 			'cookie_expiration' => $this->get_expiration_time(),
