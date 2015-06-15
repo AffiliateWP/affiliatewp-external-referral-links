@@ -6,6 +6,7 @@ class AffiliateWP_External_Referral_Links_Admin {
 		add_action( 'admin_menu', array( $this, 'register_menu' ) );
 		add_action( 'admin_init', array( $this, 'settings' ) );
 		add_filter( 'affwp_erl_sanitize', array( $this, 'sanitize_url_field' ), 10, 2 );
+		add_filter( 'affwp_erl_sanitize', array( $this, 'sanitize_checkbox' ), 10, 2 );
 	}
 
 	/**
@@ -53,7 +54,8 @@ class AffiliateWP_External_Referral_Links_Admin {
 		$defaults = array(
 			'cookie_expiration'	=> '1',
 			'referral_variable' => 'ref',
-			'url'               => ''
+			'url'               => '',
+			'use_last_referrer' => '',
 		);
 		
 		return apply_filters( 'affwp_erl_default_options', $defaults );
@@ -120,6 +122,21 @@ class AffiliateWP_External_Referral_Links_Admin {
 				'description' => __( 'How many days should the referral tracking cookie be valid for?', 'affiliatewp-external-referral-links' ) 
 			)			
 		);
+
+		// Use last referrer instead of saved referrer cookie
+		add_settings_field( 
+			'Use Last Referral', 
+			__( 'Use last referrer?', 'affiliatewp_external_referral_links' ), 
+			array( $this, 'callback_checkbox' ), 
+			'affiliatewp_external_referral_links', 
+			'affwp_erl_section', 
+			array(
+				'name'        => 'use_last_referrer',
+				'id'          => 'use-last-referrer',
+				'value'		  => 1,
+				'description' =>__( 'Check this box to use the last referrer instead of saved referrer cookie whenever your website links out to the set site URL above.', 'affiliatewp_external_referral_links' )
+			)
+		);
 		
 		register_setting(
 			'affiliatewp_external_referral_links',
@@ -168,6 +185,23 @@ class AffiliateWP_External_Referral_Links_Admin {
 	}
 
 	/**
+	 * Checkbox input field callback	 
+	 */
+	public function callback_checkbox( $args ) {
+		
+		$options = get_option( 'affiliatewp_external_referral_links' );
+		$value = $args['value'];
+	?>
+		<input type="checkbox" id="<?php echo $args['id']; ?>" name="affiliatewp_external_referral_links[<?php echo $args['name']; ?>]" value="<?php echo $value; ?>" <?php checked( $options[$args['name']], 1, true ); ?> />
+
+		<?php if ( isset( $args['description'] ) ) : ?>
+			<p class="description"><?php echo $args['description']; ?></p>
+		<?php endif; ?>
+		<?php
+
+	}
+
+	/**
 	 * Sanitization callback
 	 *
 	 * @since  1.0
@@ -204,7 +238,22 @@ class AffiliateWP_External_Referral_Links_Admin {
 
 		// remove the trailing slash if present and sanitize URL
 		if ( isset( $input['url'] ) ) {
-			$output['url'] = untrailingslashit( esc_url_raw( $output['url'] ) );
+			$output['url'] = untrailingslashit( esc_url_raw( $input['url'] ) );
+		}
+
+		return $output;
+
+	}
+
+	/**
+	 * Sanitize checkbox input
+	 */
+	public function sanitize_checkbox( $output, $input ) {
+		
+		if ( isset( $input['use_last_referrer'] ) ) {
+			$output['use_last_referrer'] = esc_attr( $input['use_last_referrer'] );
+		} else {
+			$output['use_last_referrer'] = '';
 		}
 
 		return $output;
