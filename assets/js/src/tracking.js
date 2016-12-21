@@ -3,31 +3,47 @@ jQuery(document).ready(function($) {
 	// eg "ref"
 	var referral_variable = affwp_erl_vars.referral_variable;
 
+	// get the cookie value
+	var cookie = Cookies.get( 'affwp_erl_id' );
+
 	// cookie expiration
 	var cookie_expiration = affwp_erl_vars.cookie_expiration;
 
-	// get the cookie value
-	var cookie = $.cookie( 'affwp_erl_id' );
-
-	// get the value of the referral variable from the query string
-	var ref = affiliatewp_erl_get_query_vars()[referral_variable];
+	// only store the ref is the referral variable exists in a query string
+	if ( affwp_erl_has_referral_variable( referral_variable ) ) {
+		var ref = affiliatewp_erl_get_query_vars()[referral_variable];
+	}
 
 	// if ref exists but cookie doesn't, set cookie with value of ref
 	if ( ref && ! cookie ) {
 		var cookie_value = ref;
-
-		$.cookie( 'affwp_erl_id', cookie_value, { expires: parseInt( cookie_expiration ), path: '/' } );
+		Cookies.set('affwp_erl_id', cookie_value, { expires: parseInt( cookie_expiration ), path: '/' } );
 	}
-	
+
+	/**
+	 * Returns true if the referral variable is being used anywhere in the URL, false otherwise
+	 */
+	function affwp_erl_has_referral_variable( e ) {
+		return location.search.indexOf( e + '=' ) >= 0;
+	}
+
 	// split up the query string and return the parts
+	// returns an array
 	function affiliatewp_erl_get_query_vars() {
+
 		var vars = [], hash;
 		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
 		for (var i = 0; i < hashes.length; i++) {
+
+			// split each by =
 			hash = hashes[i].split('=');
+
 			vars.push(hash[0]);
 			vars[hash[0]] = hash[1];
+
 		}
+
 		return vars;
 	}
 
@@ -49,8 +65,8 @@ jQuery(document).ready(function($) {
 	    var hash =  '';
 
 	    // if URL already has query string, use ampersand
-	    var separator = uri.indexOf( '?' ) !== -1 ? "&" : "?";    
-	    
+	    var separator = uri.indexOf( '?' ) !== -1 ? "&" : "?";
+
 	    // if hash exists in URL, move it to the end
 	    if ( uri.indexOf( '#' ) !== -1 ) {
 	        hash = uri.replace( /.*#/, '#' );
@@ -71,15 +87,15 @@ jQuery(document).ready(function($) {
 
 		// modify each target URL on the page
 		$(target_urls).each( function() {
-			
+
 			// get the current href of the link
 			current_url = $(this).attr('href');
 
 			// build URL
 			$(this).attr('href', updateQueryStringParameter( current_url, referral_variable, affiliate_id ) );
-			
+
 		});
 
 	}
-	
+
 });
