@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: AffiliateWP - External Referral Links
- * Plugin URI: 
+ * Plugin URI:
  * Description: Allows you to promote external landing pages/sites with the affiliate ID or username appended to the URLs.
- * Author: Pippin Williamson and Andrew Munro
- * Author URI: http://affiliatewp.com
- * Version: 1.0.1
+ * Author: AffiliateWWP
+ * Author URI: https://affiliatewp.com
+ * Version: 1.0.2
  * Text Domain: affiliatewp-external-referral-links
  * Domain Path: languages
  *
@@ -20,12 +20,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with AffiliateWP. If not, see <http://www.gnu.org/licenses/>.
- *
- * @package External Referral Links
- * @category Core
- * @author Andrew Munro
- * @version 1.0
- */	
+ */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -63,7 +58,7 @@ final class AffiliateWP_External_Referral_Links {
 
 			self::$plugin_dir = plugin_dir_path( __FILE__ );
 			self::$plugin_url = plugin_dir_url( __FILE__ );
-			self::$version    = '1.0.1';
+			self::$version    = '1.0.2';
 
 			self::$instance->load_textdomain();
 			self::$instance->includes();
@@ -145,7 +140,7 @@ final class AffiliateWP_External_Referral_Links {
 		if ( is_admin() ) {
 			// admin page
 			require_once self::$plugin_dir . 'includes/admin.php';
-		}	
+		}
 	}
 
 	/**
@@ -164,7 +159,7 @@ final class AffiliateWP_External_Referral_Links {
 		add_filter( 'plugin_row_meta', array( $this, 'plugin_meta' ), null, 2 );
 
 	}
-	
+
 	/**
 	 * Get options
 	 *
@@ -195,7 +190,7 @@ final class AffiliateWP_External_Referral_Links {
 	 * @since 1.0
 	 */
 	public function load_scripts() {
-		
+
 		// return if no URL is set
 		if ( ! $this->get_option('url') ) {
 			return;
@@ -209,7 +204,7 @@ final class AffiliateWP_External_Referral_Links {
 			'url'               => $this->get_option( 'url' )
 		));
 
-	}	
+	}
 
 	/**
 	 * Modify plugin metalinks
