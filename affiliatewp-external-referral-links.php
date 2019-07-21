@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name: AffiliateWP - External Referral Links
- * Plugin URI:
+ * Plugin URI: https://affiliatewp.com
  * Description: Allows you to promote external landing pages/sites with the affiliate ID or username appended to the URLs.
- * Author: AffiliateWWP
- * Author URI: https://affiliatewp.com
+ * Author: Sandhills Development, LLC
+ * Author URI: https://sandhillsdev.com
  * Version: 1.0.2
  * Text Domain: affiliatewp-external-referral-links
  * Domain Path: languages
