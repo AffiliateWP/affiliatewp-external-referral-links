@@ -201,12 +201,14 @@ final class AffiliateWP_External_Referral_Links {
 	 * Load JS files
 	 *
 	 * @since 1.0
+	 *
+	 * @return boolean true if scripts are successfully enqueued. Otherwise false.
 	 */
 	public function load_scripts() {
 
 		// return if no URL is set
 		if ( ! $this->get_option('url') ) {
-			return;
+			return false;
 		}
 
 		wp_enqueue_script( 'affwp-erl', self::$plugin_url . 'assets/js/affwp-external-referral-links.min.js', array( 'jquery' ), self::$version );
@@ -217,6 +219,7 @@ final class AffiliateWP_External_Referral_Links {
 			'url'               => $this->get_option( 'url' )
 		));
 
+		return true;
 	}
 
 	/**
