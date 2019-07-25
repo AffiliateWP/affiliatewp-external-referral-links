@@ -165,7 +165,7 @@ final class AffiliateWP_External_Referral_Links {
 	 *
 	 * @since 1.0
 	 */
-	private function get_option( $option = '' ) {
+	public function get_option( $option = '' ) {
 		$options = get_option( 'affiliatewp_external_referral_links' );
 
 		if ( ! isset( $option ) )
