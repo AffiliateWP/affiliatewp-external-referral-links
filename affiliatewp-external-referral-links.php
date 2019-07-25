@@ -184,9 +184,17 @@ final class AffiliateWP_External_Referral_Links {
 	 * Get the cookie expiration time in days
 	 *
 	 * @since 1.0
+	 *
+	 * @return int cookie expiration time, in days.
 	 */
 	public function get_expiration_time() {
-		return apply_filters( 'affwp_erl_cookie_expiration', $this->get_option( 'cookie_expiration' ) );
+		$expiration_time = apply_filters( 'affwp_erl_cookie_expiration', $this->get_option( 'cookie_expiration' ) );
+
+		if ( $expiration_time < 0 ) {
+			$expiration_time = 0;
+		}
+
+		return (int) $expiration_time;
 	}
 
 	/**
