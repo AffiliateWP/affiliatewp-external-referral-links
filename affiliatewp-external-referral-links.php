@@ -164,14 +164,19 @@ final class AffiliateWP_External_Referral_Links {
 	 * Get options
 	 *
 	 * @since 1.0
+	 *
+	 * @param $option string. The option to fetch.
+	 *
+	 * @return mixed. The option value if the option is set. False otherwise.
 	 */
 	public function get_option( $option = '' ) {
 		$options = get_option( 'affiliatewp_external_referral_links' );
 
-		if ( ! isset( $option ) )
-			return;
+		if ( ! is_string( $option ) || ! isset( $options[ $option ] ) ) {
+			return false;
+		}
 
-		return $options[$option];
+		return $options[ $option ];
 	}
 
 
