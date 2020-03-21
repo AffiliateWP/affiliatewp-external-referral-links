@@ -164,14 +164,19 @@ final class AffiliateWP_External_Referral_Links {
 	 * Get options
 	 *
 	 * @since 1.0
+	 *
+	 * @param $option string. The option to fetch.
+	 *
+	 * @return mixed. The option value if the option is set. False otherwise.
 	 */
-	private function get_option( $option = '' ) {
+	public function get_option( $option = '' ) {
 		$options = get_option( 'affiliatewp_external_referral_links' );
 
-		if ( ! isset( $option ) )
-			return;
+		if ( ! is_string( $option ) || ! isset( $options[ $option ] ) ) {
+			return false;
+		}
 
-		return $options[$option];
+		return $options[ $option ];
 	}
 
 
@@ -179,21 +184,31 @@ final class AffiliateWP_External_Referral_Links {
 	 * Get the cookie expiration time in days
 	 *
 	 * @since 1.0
+	 *
+	 * @return int cookie expiration time, in days.
 	 */
 	public function get_expiration_time() {
-		return apply_filters( 'affwp_erl_cookie_expiration', $this->get_option( 'cookie_expiration' ) );
+		$expiration_time = apply_filters( 'affwp_erl_cookie_expiration', $this->get_option( 'cookie_expiration' ) );
+
+		if ( $expiration_time < 0 ) {
+			$expiration_time = 0;
+		}
+
+		return (int) $expiration_time;
 	}
 
 	/**
 	 * Load JS files
 	 *
 	 * @since 1.0
+	 *
+	 * @return boolean true if scripts are successfully enqueued. Otherwise false.
 	 */
 	public function load_scripts() {
 
 		// return if no URL is set
 		if ( ! $this->get_option('url') ) {
-			return;
+			return false;
 		}
 
 		wp_enqueue_script( 'affwp-erl', self::$plugin_url . 'assets/js/affwp-external-referral-links.min.js', array( 'jquery' ), self::$version );
@@ -204,6 +219,7 @@ final class AffiliateWP_External_Referral_Links {
 			'url'               => $this->get_option( 'url' )
 		));
 
+		return true;
 	}
 
 	/**

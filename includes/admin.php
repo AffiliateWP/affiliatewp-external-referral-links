@@ -4,8 +4,20 @@ class AffiliateWP_External_Referral_Links_Admin {
 	
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'register_menu' ) );
+		add_action( 'admin_init', array( $this, 'maybe_set_default_settings' ), 9 );
 		add_action( 'admin_init', array( $this, 'settings' ) );
 		add_filter( 'affwp_erl_sanitize', array( $this, 'sanitize_url_field' ), 10, 2 );
+	}
+
+	/**
+	 * Sets the default settings, if no settings are set.
+	 *
+	 * @since 1.0.3
+	 */
+	public function maybe_set_default_settings() {
+		if ( false === get_option( 'affiliatewp_external_referral_links' ) ) {
+			add_option( 'affiliatewp_external_referral_links', $this->default_options() );
+		}
 	}
 
 	/**
@@ -28,7 +40,6 @@ class AffiliateWP_External_Referral_Links_Admin {
 	 */
 	public function admin_page() { ?>
     <div class="wrap">
-    	 <?php screen_icon( 'plugins' ); ?>
         <h2><?php _e( 'AffiliateWP - External Referral Links', 'affiliatewp-external-referral-links' ); ?></h2>
 
         <form action="options.php" method="POST">
@@ -66,10 +77,6 @@ class AffiliateWP_External_Referral_Links_Admin {
 	 * @since  1.0
 	 */
 	public function settings() {
-
-		if ( false == get_option( 'affiliatewp_external_referral_links' ) ) {	
-			add_option( 'affiliatewp_external_referral_links', $this->default_options() );
-		}
 
 		add_settings_section(
 			'affwp_erl_section',
