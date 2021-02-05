@@ -1,0 +1,72 @@
+# Copyright (C) 2015 Pippin Williamson and Andrew Munro
+# This file is distributed under the same license as the AffiliateWP - External Referral Links package.
+msgid ""
+msgstr ""
+"Project-Id-Version: AffiliateWP - External Referral Links 1.0\n"
+"Report-Msgid-Bugs-To: http://affiliatewp.com/\n"
+"POT-Creation-Date: 2015-06-01 09:50+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-06-01 10:16+0100\n"
+"Last-Translator: fxbenard | FxB <fx@fxbenard.com>\n"
+"Language-Team: fxbenard <fx@fxbenard.com>\n"
+"X-Generator: Poedit 1.8.1\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;"
+"esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"Language: fr_FR\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: affiliatewp-external-referral-links.php:89 affiliatewp-external-referral-links.php:101
+msgid "Cheatin&#8217; huh?"
+msgstr "Alors on essaye de tricher&nbsp;?"
+
+#: affiliatewp-external-referral-links.php:226
+msgid "Get more add-ons for AffiliateWP"
+msgstr "Obtenez plus de modules pour AffiliateWP !"
+
+#: affiliatewp-external-referral-links.php:226
+msgid "Get add-ons"
+msgstr "Obtenir des modules complémentaires"
+
+#: includes/admin.php:18 includes/admin.php:19
+msgid "External Referral Links"
+msgstr "Liens externes de référence"
+
+#: includes/admin.php:84
+msgid "Site URL"
+msgstr "URL du site"
+
+#: includes/admin.php:91
+msgid "The site URL where AffiliateWP is actually installed."
+msgstr "L'URL du site où AffiliateWP est actuellement installée."
+
+#: includes/admin.php:99
+msgid "Referral Variable"
+msgstr "Variable de référence"
+
+#: includes/admin.php:106
+msgid "The referral variable you have set in AffiliateWP at the site URL above. It must match exactly."
+msgstr ""
+"La variable de référence que vous avez défini dans AffiliateWP pour l'URL du site ci-dessus. Elle "
+"doit être exactement identique."
+
+#: includes/admin.php:113
+msgid "Cookie Expiration"
+msgstr "Expiration du cookie"
+
+#: includes/admin.php:120
+msgid "How many days should the referral tracking cookie be valid for?"
+msgstr "Combien de jours le cookie de suivi de parrainage doit-il être valide?"
+
+#. Description of the plugin/theme
+msgid ""
+"Allows you to promote external landing pages/sites with the affiliate ID or username appended to the "
+"URLs."
+msgstr ""
+"Vous permet de promouvoir des landing pages/sites externes avec l'ID d'affilié ou le nom "
+"d'utilisateur annexé aux URLs."
