@@ -7,7 +7,6 @@
  * Author URI: https://sandhillsdev.com
  * Version: 1.0.2
  * Text Domain: affiliatewp-external-referral-links
- * Domain Path: languages
  *
  * AffiliateWP is distributed under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
