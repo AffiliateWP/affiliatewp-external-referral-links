@@ -117,11 +117,14 @@ final class AffiliateWP_External_Referral_Links {
 	 */
 	private function hooks() {
 
-		// load scripts
+		// load scripts.
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
 
-		// plugin meta
+		// plugin meta.
 		add_filter( 'plugin_row_meta', array( $this, 'plugin_meta' ), null, 2 );
+
+		// filter the custom cookie name.
+		add_filter( 'affwp_get_cookie_name', array( $this, 'set_cookie_name' ), 10, 2 );
 
 	}
 
@@ -163,12 +166,36 @@ final class AffiliateWP_External_Referral_Links {
 
 		wp_enqueue_script( 'affwp-erl', self::$plugin_url . 'assets/js/affwp-external-referral-links.min.js', array( 'jquery' ), self::$version );
 
+		// get cookie name.
+		$affwp_version = defined( 'AFFILIATEWP_VERSION' ) ? AFFILIATEWP_VERSION : 'undefined';
+		if ( version_compare( $affwp_version, '2.7.1', '>=' ) ) {
+			$cookie = affiliate_wp()->tracking->get_cookie_name( 'erl-affiliate' );
+		} else {
+			$cookie = 'affwp_erl_id';
+		}
+
 		wp_localize_script( 'affwp-erl', 'affwp_erl_vars', array(
 			'cookie_expiration' => $this->get_expiration_time(),
 			'referral_variable' => $this->get_option( 'referral_variable' ),
-			'url'               => $this->get_option( 'url' )
+			'url'               => $this->get_option( 'url' ),
+			'cookie'            => $cookie,
 		));
 
+	}
+
+	/**
+	 * Sets the custom cookie name
+	 *
+	 * @param string $cookie_name The cookie name.
+	 * @param string $cookie_type The cookie type.
+	 * @return string The final cookie name.
+	 */
+	public function set_cookie_name( $cookie_name, $cookie_type ) {
+		if ( 'erl-affiliate' === $cookie_type ) {
+			$cookie_name = 'affwp_erl_id';
+		}
+
+		return $cookie_name;
 	}
 
 	/**
