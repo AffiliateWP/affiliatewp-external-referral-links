@@ -12,20 +12,36 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Main plugin bootstrap.
+ *
+ * @since 1.0
+ */
 final class AffiliateWP_External_Referral_Links {
 
-	/** Singleton *************************************************************/
-
 	/**
-	 * @var AffiliateWP_External_Referral_Links The one true AffiliateWP_External_Referral_Links
+	 * Main plugin instance.
+	 *
 	 * @since 1.0
+	 * @var   \AffiliateWP_External_Referral_Links
 	 */
 	private static $instance;
 
-	public static  $plugin_dir;
-	public static  $plugin_url;
-	private static $version;
-	private        $expiration_time;
+	/**
+	 * Plugin loader file.
+	 *
+	 * @since 1.1
+	 * @var   string
+	 */
+	private $file = '';
+
+	/**
+	 * The version number.
+	 *
+	 * @since 1.0
+	 * @var   string
+	 */
+	private $version = '1.0.2';
 
 	/**
 	 * Main AffiliateWP_External_Referral_Links Instance
@@ -35,18 +51,17 @@ final class AffiliateWP_External_Referral_Links {
 	 *
 	 * @since 1.0
 	 * @static
-	 * @staticvar array $instance
-	 * @return The one true AffiliateWP_External_Referral_Links
+	 *
+	 * @param string $file Path to the main plugin file.
+	 * @return \AffiliateWP_External_Referral_Links The one true bootstrap instance.
 	 */
-	public static function instance() {
+	public static function instance( $file = '' ) {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof AffiliateWP_External_Referral_Links ) ) {
 
-			self::$instance   = new AffiliateWP_External_Referral_Links;
+			self::$instance = new AffiliateWP_External_Referral_Links;
+			self::$instance->file = $file;
 
-			self::$plugin_dir = plugin_dir_path( __FILE__ );
-			self::$plugin_url = plugin_dir_url( __FILE__ );
-			self::$version    = '1.0.2';
-
+			self::$instance->setup_constants();
 			self::$instance->includes();
 			self::$instance->hooks();
 
@@ -83,6 +98,35 @@ final class AffiliateWP_External_Referral_Links {
 	}
 
 	/**
+	 * Sets up plugin constants.
+	 *
+	 * @since 1.1
+	 *
+	 * @return void
+	 */
+	private function setup_constants() {
+		// Plugin version.
+		if ( ! defined( 'AFFWP_ERL_VERSION' ) ) {
+			define( 'AFFWP_ERL_VERSION', $this->version );
+		}
+
+		// Plugin Folder Path.
+		if ( ! defined( 'AFFWP_ERL_PLUGIN_DIR' ) ) {
+			define( 'AFFWP_ERL_PLUGIN_DIR', plugin_dir_path( $this->file ) );
+		}
+
+		// Plugin Folder URL.
+		if ( ! defined( 'AFFWP_ERL_PLUGIN_URL' ) ) {
+			define( 'AFFWP_ERL_PLUGIN_URL', plugin_dir_url( $this->file ) );
+		}
+
+		// Plugin Root File.
+		if ( ! defined( 'AFFWP_ERL_PLUGIN_FILE' ) ) {
+			define( 'AFFWP_ERL_PLUGIN_FILE', $this->file );
+		}
+	}
+
+	/**
 	 * Include necessary files
 	 *
 	 * @access      private
@@ -92,7 +136,7 @@ final class AffiliateWP_External_Referral_Links {
 	private function includes() {
 		if ( is_admin() ) {
 			// admin page
-			require_once self::$plugin_dir . 'includes/admin.php';
+			require_once AFFWP_ERL_PLUGIN_DIR . 'includes/admin.php';
 		}
 	}
 
@@ -152,7 +196,7 @@ final class AffiliateWP_External_Referral_Links {
 			return;
 		}
 
-		wp_enqueue_script( 'affwp-erl', self::$plugin_url . 'assets/js/affwp-external-referral-links.min.js', array( 'jquery' ), self::$version );
+		wp_enqueue_script( 'affwp-erl', AFFWP_ERL_PLUGIN_URL . 'assets/js/affwp-external-referral-links.min.js', array( 'jquery' ), $this->version );
 
 		// get cookie name.
 		$affwp_version = defined( 'AFFILIATEWP_VERSION' ) ? AFFILIATEWP_VERSION : 'undefined';
@@ -196,7 +240,7 @@ final class AffiliateWP_External_Referral_Links {
 	 * @return      array $links The modified links array
 	 */
 	public function plugin_meta( $links, $file ) {
-	    if ( $file == plugin_basename( __FILE__ ) ) {
+	    if ( $file == plugin_basename( $this->file ) ) {
 	        $plugins_link = array(
 	            '<a title="' . __( 'Get more add-ons for AffiliateWP', 'affiliatewp-external-referral-links' ) . '" href="http://affiliatewp.com/addons/" target="_blank">' . __( 'Get add-ons', 'affiliatewp-external-referral-links' ) . '</a>'
 	        );
