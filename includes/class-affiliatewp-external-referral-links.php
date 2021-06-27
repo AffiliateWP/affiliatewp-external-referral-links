@@ -267,4 +267,3 @@ final class AffiliateWP_External_Referral_Links {
 function affiliatewp_external_referral_links() {
      return AffiliateWP_External_Referral_Links::instance();
 }
-add_action( 'plugins_loaded', 'affiliatewp_external_referral_links', 100 );
