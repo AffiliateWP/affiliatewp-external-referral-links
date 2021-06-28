@@ -5,7 +5,7 @@
  * Description: Allows you to promote external landing pages/sites with the affiliate ID or username appended to the URLs.
  * Author: Sandhills Development, LLC
  * Author URI: https://sandhillsdev.com
- * Version: 1.0.2
+ * Version: 1.1
  * Text Domain: affiliatewp-external-referral-links
  *
  * AffiliateWP is distributed under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
  *
  * @package AffiliateWP External Referral Links
  * @category Core
- * @version 1.0.2
+ * @version 1.1
  */
 
 // Exit if accessed directly
