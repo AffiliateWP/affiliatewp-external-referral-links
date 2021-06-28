@@ -23,6 +23,5 @@ $RECYCLE.BIN/
 .project
 .metadata
 
-# Grunt
-node_modules
-.sublime-grunt.cache
+# Build / Package
+vendor
