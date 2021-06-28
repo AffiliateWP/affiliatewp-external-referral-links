@@ -4,7 +4,7 @@ Tags: AffiliateWP, affiliate, affiliates, affwp, Pippin Williamson, Andrew Munro
 Requires at least: 4.6
 Tested up to: 5.7
 Requires PHP: 5.3
-Stable tag: 1.0.2
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,15 @@ OR you can just install it with WordPress by going to Plugins >> Add New >> and 
 1. The admin settings
 
 == Changelog ==
+
+= 1.1 =
+* New: Enforce minimum dependency requirements checking
+* New: Requires PHP 5.6 minimum
+* New: Requires WordPress 5.0 minimum
+* New: Requires AffiliateWP 2.6 minimum
+* Improved: Use tracking cookie name getter in AffiliateWP 2.7.1
+* Improved: Allow language translations to be handled by WordPress.org
+* Fixed: Remove the deprecated screen_icon() call from the admin template
 
 = 1.0.2 =
 * Fix: Referral variable of "join" conflicted with jquery.cookie script
