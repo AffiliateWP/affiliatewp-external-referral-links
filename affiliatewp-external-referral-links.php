@@ -37,7 +37,7 @@ if ( ! class_exists( 'AffiliateWP_Requirements_Check' ) ) {
 /**
  * Class used to check requirements for and bootstrap the plugin.
  *
- * @since 1.0.0
+ * @since 1.1
  *
  * @see Affiliate_WP_Requirements_Check
  */
@@ -46,7 +46,7 @@ class AffiliateWP_ERL_Requirements_Check extends AffiliateWP_Requirements_Check 
 	/**
 	 * Plugin slug.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1
 	 * @var   string
 	 */
 	protected $slug = 'affiliatewp-external-referral-links';
@@ -72,7 +72,7 @@ class AffiliateWP_ERL_Requirements_Check extends AffiliateWP_Requirements_Check 
 	/**
 	 * Bootstrap everything.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1
 	 */
 	public function bootstrap() {
 		if ( ! class_exists( 'Affiliate_WP' ) ) {
@@ -94,7 +94,7 @@ class AffiliateWP_ERL_Requirements_Check extends AffiliateWP_Requirements_Check 
 	/**
 	 * Loads the add-on.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1
 	 */
 	protected function load() {
 		// Maybe include the bundled bootstrapper.
@@ -121,7 +121,7 @@ class AffiliateWP_ERL_Requirements_Check extends AffiliateWP_Requirements_Check 
 	/**
 	 * Install, usually on an activation hook.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1
 	 */
 	public function install() {
 		// Bootstrap to include all of the necessary files
@@ -135,7 +135,7 @@ class AffiliateWP_ERL_Requirements_Check extends AffiliateWP_Requirements_Check 
 	/**
 	 * Plugin-specific aria label text to describe the requirements link.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1
 	 *
 	 * @return string Aria label text.
 	 */
@@ -146,7 +146,7 @@ class AffiliateWP_ERL_Requirements_Check extends AffiliateWP_Requirements_Check 
 	/**
 	 * Plugin-specific text used in CSS to identify attribute IDs and classes.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1
 	 *
 	 * @return string CSS selector.
 	 */
@@ -157,7 +157,7 @@ class AffiliateWP_ERL_Requirements_Check extends AffiliateWP_Requirements_Check 
 	/**
 	 * Plugin specific URL for an external requirements page.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1
 	 *
 	 * @return string Unmet requirements URL.
 	 */
