@@ -1,9 +1,9 @@
 === AffiliateWP - External Referral Links ===
 Contributors: sumobi, mordauk
 Tags: AffiliateWP, affiliate, affiliates, affwp, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, membership, referrals, marketing
-Requires at least: 4.6
+Requires at least: 5.0
 Tested up to: 5.7
-Requires PHP: 5.3
+Requires PHP: 5.6
 Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,7 @@ Allows affiliates to promote external landing pages by including the affiliate's
 
 == Description ==
 
-> This plugin was built to be used in conjunction with [AffiliateWP](https://affiliatewp.com/ "AffiliateWP").
+> This plugin was built to be used in conjunction with [AffiliateWP](https://affiliatewp.com/ "AffiliateWP") 2.6+.
 
 Like other affiliate plugins, AffiliateWP must be installed on the same domain as your e-commerce system (Easy Digital Downloads, WooCommerce etc) to properly track visits and referrals.
 
