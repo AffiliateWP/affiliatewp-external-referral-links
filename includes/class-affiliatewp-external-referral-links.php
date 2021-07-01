@@ -207,11 +207,17 @@ final class AffiliateWP_External_Referral_Links {
 
 		wp_enqueue_script( 'affwp-erl', AFFWP_ERL_PLUGIN_URL . 'assets/js/affwp-external-referral-links.min.js', array( 'jquery' ), $this->version );
 
+		$cookie = 'affwp_erl_id';
+
+		if ( true === $this->is_pantheon ) {
+			$cookie = "wp_{$cookie}";
+		}
+
 		wp_localize_script( 'affwp-erl', 'affwp_erl_vars', array(
 			'cookie_expiration' => $this->get_expiration_time(),
 			'referral_variable' => $this->get_option( 'referral_variable' ),
 			'url'               => $this->get_option( 'url' ),
-			'cookie'            => 'affwp_erl_id',
+			'cookie'            => $cookie,
 		));
 
 	}
