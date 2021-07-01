@@ -44,6 +44,14 @@ final class AffiliateWP_External_Referral_Links {
 	private $version = '1.1';
 
 	/**
+	 * Is on Pantheon platform?
+	 *
+	 * @since 1.1.1
+	 * @var bool
+	 */
+	public $is_pantheon = false;
+
+	/**
 	 * Main AffiliateWP_External_Referral_Links Instance
 	 *
 	 * Insures that only one instance of AffiliateWP_External_Referral_Links exists in memory at any one
@@ -65,6 +73,10 @@ final class AffiliateWP_External_Referral_Links {
 			self::$instance->includes();
 			self::$instance->hooks();
 
+			// Detect if on Pantheon platform.
+			if ( isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ) {
+				self::$instance->is_pantheon = true;
+			}
 		}
 
 		return self::$instance;
