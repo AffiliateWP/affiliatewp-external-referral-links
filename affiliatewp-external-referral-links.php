@@ -5,7 +5,7 @@
  * Description: Allows you to promote external landing pages/sites with the affiliate ID or username appended to the URLs.
  * Author: Sandhills Development, LLC
  * Author URI: https://sandhillsdev.com
- * Version: 1.1
+ * Version: 1.1.1
  * Text Domain: affiliatewp-external-referral-links
  *
  * AffiliateWP is distributed under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
  *
  * @package AffiliateWP External Referral Links
  * @category Core
- * @version 1.1
+ * @version 1.1.1
  */
 
 // Exit if accessed directly
@@ -52,43 +52,12 @@ class AffiliateWP_ERL_Requirements_Check extends AffiliateWP_Requirements_Check 
 	protected $slug = 'affiliatewp-external-referral-links';
 
 	/**
-	 * Add-on requirements.
-	 *
-	 * @since 1.1
-	 * @var   array[]
-	 */
-	protected $addon_requirements = array(
-		// AffiliateWP.
-		'affwp' => array(
-			'minimum' => '2.6',
-			'name'    => 'AffiliateWP',
-			'exists'  => true,
-			'current' => false,
-			'checked' => false,
-			'met'     => false
-		),
-	);
-
-	/**
 	 * Bootstrap everything.
 	 *
 	 * @since 1.1
 	 */
 	public function bootstrap() {
-		if ( ! class_exists( 'Affiliate_WP' ) ) {
-
-			if ( ! class_exists( 'AffiliateWP_Activation' ) ) {
-				require_once 'includes/lib/affwp/class-affiliatewp-activation.php';
-			}
-
-			// AffiliateWP activation
-			if ( ! class_exists( 'Affiliate_WP' ) ) {
-				$activation = new AffiliateWP_Activation( plugin_dir_path( __FILE__ ), basename( __FILE__ ) );
-				$activation = $activation->run();
-			}
-		} else {
-			\AffiliateWP_External_Referral_Links::instance( __FILE__ );
-		}
+		\AffiliateWP_External_Referral_Links::instance( __FILE__ );
 	}
 
 	/**
@@ -105,13 +74,7 @@ class AffiliateWP_ERL_Requirements_Check extends AffiliateWP_Requirements_Check 
 		// Maybe hook-in the bootstrapper.
 		if ( class_exists( 'AffiliateWP_External_Referral_Links' ) ) {
 
-			$affwp_version = get_option( 'affwp_version' );
-
-			if ( version_compare( $affwp_version, '2.7', '<' ) ) {
-				add_action( 'plugins_loaded', array( $this, 'bootstrap' ), 100 );
-			} else {
-				add_action( 'affwp_plugins_loaded', array( $this, 'bootstrap' ), 100 );
-			}
+			add_action( 'plugins_loaded', array( $this, 'bootstrap' ), 100 );
 
 			// Register the activation hook.
 			register_activation_hook( __FILE__, array( $this, 'install' ) );

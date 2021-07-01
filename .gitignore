@@ -25,3 +25,4 @@ $RECYCLE.BIN/
 
 # Build / Package
 vendor
+includes/lib/affwp/class-affiliatewp-activation.php

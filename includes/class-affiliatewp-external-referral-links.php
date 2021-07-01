@@ -41,7 +41,15 @@ final class AffiliateWP_External_Referral_Links {
 	 * @since 1.0
 	 * @var   string
 	 */
-	private $version = '1.1';
+	private $version = '1.1.1';
+
+	/**
+	 * Is on Pantheon platform?
+	 *
+	 * @since 1.1.1
+	 * @var bool
+	 */
+	public $is_pantheon = false;
 
 	/**
 	 * Main AffiliateWP_External_Referral_Links Instance
@@ -65,6 +73,10 @@ final class AffiliateWP_External_Referral_Links {
 			self::$instance->includes();
 			self::$instance->hooks();
 
+			// Detect if on Pantheon platform.
+			if ( isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ) {
+				self::$instance->is_pantheon = true;
+			}
 		}
 
 		return self::$instance;
@@ -155,9 +167,6 @@ final class AffiliateWP_External_Referral_Links {
 		// plugin meta.
 		add_filter( 'plugin_row_meta', array( $this, 'plugin_meta' ), null, 2 );
 
-		// filter the custom cookie name.
-		add_filter( 'affwp_get_cookie_name', array( $this, 'set_cookie_name' ), 10, 2 );
-
 	}
 
 	/**
@@ -198,12 +207,10 @@ final class AffiliateWP_External_Referral_Links {
 
 		wp_enqueue_script( 'affwp-erl', AFFWP_ERL_PLUGIN_URL . 'assets/js/affwp-external-referral-links.min.js', array( 'jquery' ), $this->version );
 
-		// get cookie name.
-		$affwp_version = defined( 'AFFILIATEWP_VERSION' ) ? AFFILIATEWP_VERSION : 'undefined';
-		if ( version_compare( $affwp_version, '2.7.1', '>=' ) ) {
-			$cookie = affiliate_wp()->tracking->get_cookie_name( 'erl-affiliate' );
-		} else {
-			$cookie = 'affwp_erl_id';
+		$cookie = 'affwp_erl_id';
+
+		if ( true === $this->is_pantheon ) {
+			$cookie = "wp_{$cookie}";
 		}
 
 		wp_localize_script( 'affwp-erl', 'affwp_erl_vars', array(
@@ -213,21 +220,6 @@ final class AffiliateWP_External_Referral_Links {
 			'cookie'            => $cookie,
 		));
 
-	}
-
-	/**
-	 * Sets the custom cookie name
-	 *
-	 * @param string $cookie_name The cookie name.
-	 * @param string $cookie_type The cookie type.
-	 * @return string The final cookie name.
-	 */
-	public function set_cookie_name( $cookie_name, $cookie_type ) {
-		if ( 'erl-affiliate' === $cookie_type ) {
-			$cookie_name = 'affwp_erl_id';
-		}
-
-		return $cookie_name;
 	}
 
 	/**
