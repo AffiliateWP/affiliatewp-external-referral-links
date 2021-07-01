@@ -52,43 +52,12 @@ class AffiliateWP_ERL_Requirements_Check extends AffiliateWP_Requirements_Check 
 	protected $slug = 'affiliatewp-external-referral-links';
 
 	/**
-	 * Add-on requirements.
-	 *
-	 * @since 1.1
-	 * @var   array[]
-	 */
-	protected $addon_requirements = array(
-		// AffiliateWP.
-		'affwp' => array(
-			'minimum' => '2.6',
-			'name'    => 'AffiliateWP',
-			'exists'  => true,
-			'current' => false,
-			'checked' => false,
-			'met'     => false
-		),
-	);
-
-	/**
 	 * Bootstrap everything.
 	 *
 	 * @since 1.1
 	 */
 	public function bootstrap() {
-		if ( ! class_exists( 'Affiliate_WP' ) ) {
-
-			if ( ! class_exists( 'AffiliateWP_Activation' ) ) {
-				require_once 'includes/lib/affwp/class-affiliatewp-activation.php';
-			}
-
-			// AffiliateWP activation
-			if ( ! class_exists( 'Affiliate_WP' ) ) {
-				$activation = new AffiliateWP_Activation( plugin_dir_path( __FILE__ ), basename( __FILE__ ) );
-				$activation = $activation->run();
-			}
-		} else {
-			\AffiliateWP_External_Referral_Links::instance( __FILE__ );
-		}
+		\AffiliateWP_External_Referral_Links::instance( __FILE__ );
 	}
 
 	/**
