@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
 	var referral_variable = affwp_erl_vars.referral_variable;
 
 	// get the cookie value
-	var cookie = Cookies.get( 'affwp_erl_id' );
+	var cookie = Cookies.get( affwp_erl_vars.cookie );
 
 	// cookie expiration
 	var cookie_expiration = affwp_erl_vars.cookie_expiration;
@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
 	// if ref exists but cookie doesn't, set cookie with value of ref
 	if ( ref && ! cookie ) {
 		var cookie_value = ref;
-		Cookies.set('affwp_erl_id', cookie_value, { expires: parseInt( cookie_expiration ), path: '/' } );
+		Cookies.set(affwp_erl_vars.cookie, cookie_value, { expires: parseInt( cookie_expiration ), path: '/' } );
 	}
 
 	/**

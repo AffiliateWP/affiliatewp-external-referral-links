@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Renders the External Referral Links admin screen.
+ *
+ * @since 1.0
+ */
 class AffiliateWP_External_Referral_Links_Admin {
 	
 	public function __construct() {
@@ -28,7 +32,6 @@ class AffiliateWP_External_Referral_Links_Admin {
 	 */
 	public function admin_page() { ?>
     <div class="wrap">
-    	 <?php screen_icon( 'plugins' ); ?>
         <h2><?php _e( 'AffiliateWP - External Referral Links', 'affiliatewp-external-referral-links' ); ?></h2>
 
         <form action="options.php" method="POST">
