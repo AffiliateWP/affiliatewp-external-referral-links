@@ -4,7 +4,7 @@ Tags: AffiliateWP, affiliate, affiliates, affwp, Pippin Williamson, Andrew Munro
 Requires at least: 5.0
 Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Allows affiliates to promote external landing pages by including the affiliate's
 
 == Description ==
 
-> This plugin was built to be used in conjunction with [AffiliateWP](https://affiliatewp.com/ "AffiliateWP") 2.6+.
+> This plugin was built to be used in conjunction with [AffiliateWP](https://affiliatewp.com/ "AffiliateWP").
 
 Like other affiliate plugins, AffiliateWP must be installed on the same domain as your e-commerce system (Easy Digital Downloads, WooCommerce etc) to properly track visits and referrals.
 
@@ -38,6 +38,10 @@ OR you can just install it with WordPress by going to Plugins >> Add New >> and 
 1. The admin settings
 
 == Changelog ==
+
+= 1.1.1 =
+* Improved: Add Pantheon platform detection for cookie naming
+* Fixed: Remove AffiliateWP requirement
 
 = 1.1 =
 * New: Enforce minimum dependency requirements checking
