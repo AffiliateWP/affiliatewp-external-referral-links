@@ -41,7 +41,7 @@ final class AffiliateWP_External_Referral_Links {
 	 * @since 1.0
 	 * @var   string
 	 */
-	private $version = '1.1.1';
+	private $version = '1.1.2';
 
 	/**
 	 * Is on Pantheon platform?
