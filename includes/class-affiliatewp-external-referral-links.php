@@ -210,7 +210,7 @@ final class AffiliateWP_External_Referral_Links {
 		$cookie = 'affwp_erl_id';
 
 		if ( true === $this->is_pantheon ) {
-			$cookie = "wp_{$cookie}";
+			$cookie = "wp-{$cookie}";
 		}
 
 		wp_localize_script( 'affwp-erl', 'affwp_erl_vars', array(
