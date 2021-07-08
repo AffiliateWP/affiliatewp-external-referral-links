@@ -4,7 +4,7 @@ Tags: AffiliateWP, affiliate, affiliates, affwp, Pippin Williamson, Andrew Munro
 Requires at least: 5.0
 Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,9 @@ OR you can just install it with WordPress by going to Plugins >> Add New >> and 
 1. The admin settings
 
 == Changelog ==
+
+= 1.1.2 =
+* Fixed: Fix Pantheon-specific cookie prefix delimiter
 
 = 1.1.1 =
 * Improved: Add Pantheon platform detection for cookie naming
